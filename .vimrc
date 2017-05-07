@@ -11,7 +11,7 @@ set softtabstop=2	" ^
 set expandtab		" but not a dumb horrible person
 
 "visuals
-colorscheme sidonia  
+colorscheme sidonia  " available at- https://github.com/AlessandroYorba/Sidonia
 hi Normal ctermbg=none "reset back to inheriting term colors from the $TERM
 hi NonText ctermbg=none
 set cursorline
