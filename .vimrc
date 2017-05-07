@@ -55,6 +55,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe' " available at- https://github.com/Valloric/YouCompleteMe
 call vundle#end()    
 filetype plugin indent on
