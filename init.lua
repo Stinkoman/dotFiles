@@ -1,7 +1,32 @@
-local lspconfig = require('lspconfig')
-require('plugins')
+-- local lspconfig = require('lspconfig')
+  -- Set up lspconfig.
+  -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  -- require('lspconfig')['powershell_es'].setup {
+  --  capabilities = capabilities
+  -- }
+
+-- lspconfig.jedi_language_server.setup{}
+-- lspconfig.powershell_es.setup{}
 require("mason").setup()
-lspconfig.jedi_language_server.setup{}
+require("mason-lspconfig").setup()
+
+require("mason-lspconfig").setup_handlers {
+-- The first entry (without a key) will be the default handler
+-- and will be called for each installed server that doesn't have
+-- a dedicated handler.
+function (server_name) -- default handler (optional)
+    require("lspconfig")[server_name].setup {}
+end,
+-- Next, you can provide a dedicated handler for specific servers.
+-- For example, a handler override for the `rust_analyzer`:
+["rust_analyzer"] = function ()
+    require("rust-tools").setup {}
+end
+}
+
+require('plugins')
+-- require("mason").setup()
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -151,11 +176,4 @@ local cmp = require'cmp'
       { name = 'cmdline' }
     })
   })
-
-  -- Set up lspconfig.
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
-    capabilities = capabilities
-  }
 
